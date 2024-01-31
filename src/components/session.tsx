@@ -57,7 +57,8 @@ type  Session = {
     email:string,
     phoneNumber:string,
     bio:string,isVerified: boolean,
-    sold:number
+    sold:number,
+    ProfileUrl: string
 }
 
 
@@ -132,9 +133,11 @@ const SessionFetcher  =   (props: {children:ReactNode}) => {
   (<SessionProviderFallback></SessionProviderFallback>)
   :
   (
+    <div style={{background: 'url(bg_all.jpg)'}}>
       <SessionContext.Provider value={{isAuth, session, logOut, recheckAuth}}>
         {props.children}
       </SessionContext.Provider>
+    </div>
   )
 
 
