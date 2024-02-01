@@ -128,6 +128,7 @@ export default function LoginPage() {
           </button>
         </div>
         {error && <label className="text-red-700 text-sm">{error}</label>}
+        <Link href='forgot_password' className="text-sm text-blue-700 font-bold">Forgotten Password?</Link>
         <button className="bg-green-500 text-white mb-20 pl-20 pr-20 pt-2 pb-2 rounded-xl font-bold hover:bg-green-600">
           Submit
         </button>
