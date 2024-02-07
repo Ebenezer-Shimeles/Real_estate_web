@@ -127,7 +127,7 @@ export default (props: {userId: string})=>{
                 return(
                     <div className={"chat " + (msgData.isFromMe ? "chat-start": "chat-end")}>
                         <div className={"chat-bubble  text-white font-bold flex flex-col" + (msgData.isFromMe ? " bg-blue-500": " bg-black")} >
-                            {msg.mediaContent && <img src={`https://localhost:7113/uploads/${msg.mediaContent.key}`}  className="w-20 h-20"/>}
+                            {msg.mediaContent && <img src={`https://localhost:7113/uploads/${msg.mediaContent.key}`}  className="w-22 h-22"/>}
                             {msg.textContent}
                            <span className="text-xs text-slate-100 italic">{msg.sentAt.substring(0, 10)}</span> 
                         </div>

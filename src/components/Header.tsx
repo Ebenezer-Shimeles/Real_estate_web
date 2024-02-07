@@ -59,10 +59,10 @@ export default () => {
         <FaOilWell />{" "}
         <span className="hidden md:block text-sm">My Properties</span>
       </button>
-      <button className="btn">
+      {/* <button className="btn">
         <FaBookmark />{" "}
         <span className="hidden md:block text-sm">Bookmarks</span>
-      </button>
+      </button> */}
       <Link href='/msg'>
         <button className="btn">
           <FaMessage /> <span className="hidden md:block text-sm">Messages
@@ -91,7 +91,7 @@ export default () => {
         </button>
       </Link>
       <button className="btn">
-        <FaChartBar /> <span className="hidden md:block text-sm">Analysis</span>
+        <FaChartBar /> <span className="hidden md:block text-sm">Admin</span>
       </button>
 
       <button className="btn text-red-700" onClick={logOut}>
