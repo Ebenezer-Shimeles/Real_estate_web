@@ -12,7 +12,25 @@ import {
   Children,
 } from "react";
 import Toast from "./Toast";
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2){
+    return (parts as any).pop().split(';').shift();
+
+  } 
+}
+
+
+import { createSignalRContext } from "react-signalr";
 axios.defaults.withCredentials = true;
+axios.interceptors.request.use( config =>{
+    const val = getCookie('XSRF-REQUEST-TOKEN')
+    if(val){
+       config.headers['X-XSRF-TOKEN'] = val;
+    }
+    return config;
+});
 function oauthSignIn() {
   // Google's OAuth 2.0 endpoint for requesting an access token
   var oauth2Endpoint = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -100,6 +118,8 @@ const SessionProvider = (props: { children: ReactNode }) => {
 //   return (<SessionContext.Provider value={{session ,isAuth, logOut}}>{props.children}</SessionContext.Provider >)
 // }
 // let r: {session: Session, isAuth: boolean} | null = null;
+const singalRContext = createSignalRContext()
+
 const SessionFetcher = (props: { children: ReactNode }) => {
   const [session, setSession] = useState<null | Session | undefined>(null);
   const [isAuth, setIsAuth] = useState<boolean | undefined>(false);
@@ -126,6 +146,10 @@ const SessionFetcher = (props: { children: ReactNode }) => {
     setSession(null);
     setIsAuth(false);
   };
+  // setInterval(()=>{
+  //     axios.get("https://localhost:7113/api/users/me").then(console.log).catch(console.warn)
+  // }, 1000)
+
 
   return isLoading ? (
     <SessionProviderFallback></SessionProviderFallback>
@@ -133,7 +157,10 @@ const SessionFetcher = (props: { children: ReactNode }) => {
     <div style={{ background: "url(bg_all.jpg)", backgroundSize: 'contain' }}>
       <SessionContext.Provider value={{ isAuth, session, logOut, recheckAuth }}>
         <Toast>
-            {props.children}
+            <singalRContext.Provider url={'https://localhost:7113/socket'}>
+                {props.children}
+            </singalRContext.Provider>
+            
         </Toast>
         
       </SessionContext.Provider>
@@ -143,4 +170,5 @@ const SessionFetcher = (props: { children: ReactNode }) => {
 function useSession() {
   return useContext(SessionContext);
 }
-export { oauthSignIn, isLoggedIn, getMe, SessionProvider, useSession };
+
+export { oauthSignIn, isLoggedIn, getMe, SessionProvider, useSession, singalRContext };

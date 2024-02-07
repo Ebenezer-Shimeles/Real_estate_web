@@ -14,9 +14,9 @@ export default () => {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center">
       <div>
-        <h1 className="text-5xl font-bold">About Us</h1>
+        <h1 className="text-5xl font-bold text-slate-200">About Us</h1>
       </div>
-      <div className="text-left m-5">{aboutUs}</div>
+      <div className="text-left m-5 text-slate-100">{aboutUs}</div>
     </div>
   );
 };

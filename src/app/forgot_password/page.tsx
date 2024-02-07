@@ -9,8 +9,9 @@ export default ()=>{
     const showToast = useToast();
 
     const sendRequest = async () =>{
-        showToast("A link is sent for your email")
+        
         await axios.put("https://localhost:7113/api/users/Session", {email});
+        showToast("Link sent to your email address")
         
   
 

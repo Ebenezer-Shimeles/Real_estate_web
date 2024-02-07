@@ -35,16 +35,16 @@ export default (props : {children: ReactNode}) =>{
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
 
-    const showToast = (props: { msg: string; mode: boolean, time: number } = {msg: "", mode: true, time: 3000})=>{
-        setToastMessage(props.msg);
-        setIsError(props.mode);
+    const showToast = ( msg=  "", mode =  true, time =3000)=>{
+        setToastMessage(msg);
+        setIsError(mode);
         setIsVisible(true);
      
         setTimeout(()=>{
             setIsVisible(false);
             setIsError(false);
             setToastMessage("");
-        }, props.time)
+        },time)
     }
 
     return (

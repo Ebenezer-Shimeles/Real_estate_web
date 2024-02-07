@@ -22,6 +22,9 @@ export default () => {
   if (!isAuth) {
     window.location.href = "/login";
   }
+  if(session?.isVerified === false){
+    window.location.href = '/verify'
+  }
 
   const updateProfile = async () => {
     try {
@@ -47,11 +50,10 @@ export default () => {
       });
       recheckAuth();
       setTimeout(()=>{
-        showToast({
-            msg: "Updated!",
-            time: 4000,
-            mode: true
-        });
+        
+          showToast( "Updated!");
+         
+      
 
       }, 2000)
      
@@ -129,6 +131,7 @@ export default () => {
         <button className="btn btn-success w-12" onClick={updateProfile}>
           Save
         </button>
+        <Link href={`/profile/${session.id}`} className="btn btn-link">See outside view</Link>
       </main>
     </div>
   );

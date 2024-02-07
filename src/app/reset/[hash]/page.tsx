@@ -29,7 +29,7 @@ export default () =>{
 
 
         }catch(e){
-            showToast("Error in given values")
+            showToast("password is weak", false)
         }
     };
     const handleEye: FormEventHandler = (e) => {

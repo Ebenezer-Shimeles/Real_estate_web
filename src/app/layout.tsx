@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { SessionProvider } from "../components/session";
+import Script from "@/components/Script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         </a>
         <SessionProvider>{children}</SessionProvider>
       </body>
+      <Script />
     </html>
   );
 }
